@@ -192,8 +192,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AngularApp\e2e\protractor.conf.js" />
+    <Content Include="AngularApp\src\app\add-player\add-player.component.css" />
+    <Content Include="AngularApp\src\app\add-player\add-player.component.html" />
     <Content Include="AngularApp\src\app\app.component.css" />
     <Content Include="AngularApp\src\app\app.component.html" />
+    <Content Include="AngularApp\src\app\edit-player\edit-player.component.css" />
+    <Content Include="AngularApp\src\app\edit-player\edit-player.component.html" />
     <Content Include="AngularApp\src\app\players\players.component.css" />
     <Content Include="AngularApp\src\app\players\players.component.html" />
     <Content Include="AngularApp\src\favicon.ico" />
@@ -299,10 +303,14 @@
   <ItemGroup>
     <TypeScriptCompile Include="AngularApp\e2e\src\app.e2e-spec.ts" />
     <TypeScriptCompile Include="AngularApp\e2e\src\app.po.ts" />
+    <TypeScriptCompile Include="AngularApp\src\app\add-player\add-player.component.spec.ts" />
+    <TypeScriptCompile Include="AngularApp\src\app\add-player\add-player.component.ts" />
     <TypeScriptCompile Include="AngularApp\src\app\app-routing.module.ts" />
     <TypeScriptCompile Include="AngularApp\src\app\app.component.spec.ts" />
     <TypeScriptCompile Include="AngularApp\src\app\app.component.ts" />
     <TypeScriptCompile Include="AngularApp\src\app\app.module.ts" />
+    <TypeScriptCompile Include="AngularApp\src\app\edit-player\edit-player.component.spec.ts" />
+    <TypeScriptCompile Include="AngularApp\src\app\edit-player\edit-player.component.ts" />
     <TypeScriptCompile Include="AngularApp\src\app\players\players.component.spec.ts" />
     <TypeScriptCompile Include="AngularApp\src\app\players\players.component.ts" />
     <TypeScriptCompile Include="AngularApp\src\environments\environment.prod.ts" />

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PlayersComponent } from './players/players.component';
+import { AddPlayerComponent } from './add-player/add-player.component';
+import { EditPlayerComponent } from './edit-player/edit-player.component';
 
 const routes: Routes = [
   {
@@ -13,8 +15,7 @@ const routes: Routes = [
     path: 'players',
     component: PlayersComponent,
     data: { title: 'Players' }
-  }
-  /*
+  },
   {
     path: 'players/create',
     component: AddPlayerComponent,
@@ -23,8 +24,8 @@ const routes: Routes = [
   {
     path: 'players/edit/:id',
     component: EditPlayerComponent,
-    data: { title: 'Edit Book' }
-  }*/
+    data: { title: 'Edit Player' }
+  }
 ];
 
 @NgModule({
