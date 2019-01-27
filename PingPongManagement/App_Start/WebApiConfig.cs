@@ -19,6 +19,12 @@ namespace PingPongManagement
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // Prevent infinite stack in JSON response.
+            // https://stackoverflow.com/questions/19467673/entity-framework-self-referencing-loop-detected
+            config.Formatters.JsonFormatter
+                        .SerializerSettings
+                        .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
     }
 }
