@@ -181,8 +181,13 @@
     <Compile Include="Migrations\201901270211558_Initial.Designer.cs">
       <DependentUpon>201901270211558_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901270445354_SkillLevelForeignKey.cs" />
+    <Compile Include="Migrations\201901270445354_SkillLevelForeignKey.Designer.cs">
+      <DependentUpon>201901270445354_SkillLevelForeignKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\SkillLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -308,6 +313,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201901270211558_Initial.resx">
       <DependentUpon>201901270211558_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901270445354_SkillLevelForeignKey.resx">
+      <DependentUpon>201901270445354_SkillLevelForeignKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

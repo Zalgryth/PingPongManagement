@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PingPongManagement.Models
 {
@@ -16,10 +17,13 @@ namespace PingPongManagement.Models
         public int? Age { get; set; }
 
         [Required]
-        public SkillLevel SkillLevel { get; set; }
+        [ForeignKey("SkillLevel")]
+        public int SkillLevelId { get; set; }
 
         [Required]
         [EmailAddress]
         public string EmailAddress { get; set; }
+
+        public virtual SkillLevel SkillLevel { get; set; }
     }
 }

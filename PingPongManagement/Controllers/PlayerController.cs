@@ -37,8 +37,22 @@ namespace PingPongManagement.Controllers
         }
 
         // POST: api/Player
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post([FromBody]Player player)
         {
+            if (db.SkillLevels.Find(player.SkillLevelId) == null)
+            {
+                ModelState.AddModelError("SkillLevelId", "SkillLevelId does not correspond to a valid SkillLevel.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Players.Add(player);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = player.Id }, player);
         }
 
         // PUT: api/Player/5
