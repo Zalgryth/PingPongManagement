@@ -3,6 +3,7 @@ using PingPongManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -39,10 +40,7 @@ namespace PingPongManagement.Controllers
         // POST: api/Player
         public IHttpActionResult Post([FromBody]Player player)
         {
-            if (db.SkillLevels.Find(player.SkillLevelId) == null)
-            {
-                ModelState.AddModelError("SkillLevelId", "SkillLevelId does not correspond to a valid SkillLevel.");
-            }
+            ValidateSkillLevelExists(player.SkillLevelId);
 
             if (!ModelState.IsValid)
             {
@@ -56,8 +54,44 @@ namespace PingPongManagement.Controllers
         }
 
         // PUT: api/Player/5
-        public void Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(int id, Player player)
         {
+            ValidateSkillLevelExists(player.SkillLevelId);
+
+            if (id != player.Id)
+            {
+                ModelState.AddModelError("player.Id", "The Id field does not match the Id provided in the request URL.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != player.Id)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(player).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PlayerExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Ok(player);
         }
 
         // DELETE: api/Player/5
@@ -73,6 +107,19 @@ namespace PingPongManagement.Controllers
             db.SaveChanges();
 
             return Ok(player);
+        }
+
+        private void ValidateSkillLevelExists(int id)
+        {
+            if (db.SkillLevels.Find(id) == null)
+            {
+                ModelState.AddModelError("player.SkillLevelId", "The SkillLevelId field does not correspond to a valid SkillLevel.");
+            }
+        }
+
+        private bool PlayerExists(int id)
+        {
+            return db.Players.Count(i => i.Id == id) > 0;
         }
     }
 }
