@@ -61,8 +61,18 @@ namespace PingPongManagement.Controllers
         }
 
         // DELETE: api/Player/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            var player = db.Players.Find(id);
+            if (player == null)
+            {
+                return NotFound();
+            }
+
+            db.Players.Remove(player);
+            db.SaveChanges();
+
+            return Ok(player);
         }
     }
 }

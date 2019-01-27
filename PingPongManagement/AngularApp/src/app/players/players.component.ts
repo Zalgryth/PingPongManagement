@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PlayersComponent implements OnInit {
   players: any;
+  playerToDelete: any;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -16,4 +17,19 @@ export class PlayersComponent implements OnInit {
     });
   }
 
+  setPlayerToDelete(id) {
+    this.playerToDelete = id;
+  }
+
+  deletePlayer() {
+    this.http.delete('/api/player/' + this.playerToDelete)
+      .subscribe(res => {
+        this.http.get('/api/player').subscribe(data => {
+          this.players = data;
+        });
+      }, (err) => {
+        console.log(err);
+      }
+      );
+  }
 }
