@@ -57,6 +57,7 @@ namespace PingPongManagement.Controllers
         public IHttpActionResult Put(int id, Player player)
         {
             ValidateSkillLevelExists(player.SkillLevelId);
+            player.SkillLevel = null;
 
             if (id != player.Id)
             {

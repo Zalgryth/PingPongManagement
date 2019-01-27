@@ -46,7 +46,7 @@
           <td>{{ player.SkillLevel.Name }}</td>
           <td>{{ player.EmailAddress }}</td>
           <td>
-            <a href="todo" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+            <a href="/players/edit/{{ player.Id }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
             <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" (click)="setPlayerToDelete(player.Id)"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
           </td>
         </tr>
