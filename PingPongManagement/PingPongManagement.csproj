@@ -194,6 +194,8 @@
     <Content Include="AngularApp\e2e\protractor.conf.js" />
     <Content Include="AngularApp\src\app\app.component.css" />
     <Content Include="AngularApp\src\app\app.component.html" />
+    <Content Include="AngularApp\src\app\players\players.component.css" />
+    <Content Include="AngularApp\src\app\players\players.component.html" />
     <Content Include="AngularApp\src\favicon.ico" />
     <Content Include="AngularApp\src\index.html" />
     <Content Include="AngularApp\src\karma.conf.js" />
@@ -301,6 +303,8 @@
     <TypeScriptCompile Include="AngularApp\src\app\app.component.spec.ts" />
     <TypeScriptCompile Include="AngularApp\src\app\app.component.ts" />
     <TypeScriptCompile Include="AngularApp\src\app\app.module.ts" />
+    <TypeScriptCompile Include="AngularApp\src\app\players\players.component.spec.ts" />
+    <TypeScriptCompile Include="AngularApp\src\app\players\players.component.ts" />
     <TypeScriptCompile Include="AngularApp\src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="AngularApp\src\environments\environment.ts" />
     <TypeScriptCompile Include="AngularApp\src\main.ts" />
