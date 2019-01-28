@@ -3,6 +3,9 @@ using PingPongManagement.Models;
 
 namespace PingPongManagement.Data
 {
+    /// <summary>
+    /// Entity Framework Database Context.
+    /// </summary>
     public class PingPongDbContext : DbContext, IPingPongDbContext
     {
         public PingPongDbContext() : base("PingPongConnectionString")
