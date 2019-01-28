@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class PlayersComponent implements OnInit {
   players: any;
   playerToDelete: any;
+  page: number = 1;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
