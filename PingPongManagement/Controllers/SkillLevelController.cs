@@ -1,17 +1,20 @@
 ﻿using PingPongManagement.Data;
 using PingPongManagement.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace PingPongManagement.Controllers
 {
     public class SkillLevelController : ApiController
     {
-        private PingPongDbContext db = new PingPongDbContext();
+        private IPingPongDbContext db = new PingPongDbContext();
+
+        public SkillLevelController() { }
+
+        public SkillLevelController(IPingPongDbContext context)
+        {
+            db = context;
+        }
 
         // GET: api/SkillLevel
         public IQueryable<SkillLevel> Get()

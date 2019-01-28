@@ -1,20 +1,22 @@
 ﻿using PingPongManagement.Data;
 using PingPongManagement.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace PingPongManagement.Controllers
 {
     public class PlayerController : ApiController
     {
-        private PingPongDbContext db = new PingPongDbContext();
+        private IPingPongDbContext db = new PingPongDbContext();
+        
+        public PlayerController() { }
+
+        public PlayerController(IPingPongDbContext context)
+        {
+            db = context;
+        }
 
         // GET: api/Player
         public IQueryable<Player> Get()
@@ -38,7 +40,7 @@ namespace PingPongManagement.Controllers
         }
 
         // POST: api/Player
-        public IHttpActionResult Post([FromBody]Player player)
+        public IHttpActionResult Post(Player player)
         {
             ValidateSkillLevelExists(player.SkillLevelId);
 
@@ -73,8 +75,8 @@ namespace PingPongManagement.Controllers
             {
                 return BadRequest();
             }
-
-            db.Entry(player).State = EntityState.Modified;
+            
+            db.MarkAsModified(player);
 
             try
             {
@@ -110,6 +112,10 @@ namespace PingPongManagement.Controllers
             return Ok(player);
         }
 
+        /// <summary>
+        /// Adds an error to the ModelState if the SkillLevel specified does not exist.
+        /// </summary>
+        /// <param name="id"></param>
         private void ValidateSkillLevelExists(int id)
         {
             if (db.SkillLevels.Find(id) == null)
@@ -118,6 +124,11 @@ namespace PingPongManagement.Controllers
             }
         }
 
+        /// <summary>
+        /// Returns whether the Player specified exists.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private bool PlayerExists(int id)
         {
             return db.Players.Count(i => i.Id == id) > 0;
