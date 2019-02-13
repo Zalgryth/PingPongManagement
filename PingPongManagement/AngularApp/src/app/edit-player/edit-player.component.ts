@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http'
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-player',
@@ -8,21 +9,22 @@ import { HttpClient } from '@angular/common/http'
   styleUrls: ['./edit-player.component.css']
 })
 export class EditPlayerComponent implements OnInit {
+  @Input() id;
   player: any = {};
   skillLevels: any;
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+  constructor(public activeModal: NgbActiveModal, private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    let id = this.route.snapshot.params['id'];
     this.http.get('/api/skillLevel').subscribe(data => {
       this.skillLevels = data;
     });
-    this.http.get('/api/player/' + id).subscribe(data => {
+    this.http.get('/api/player/' + this.id).subscribe(data => {
       this.player = data;
     });
   }
 
   updatePlayer(id) {
+    this.activeModal.close('Submitted');
     this.http.put('/api/player/' + id, this.player)
       .subscribe(res => {
         //let id = res['Id'];

@@ -1,10 +1,10 @@
-<div id="editPlayerModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+
       <form (ngSubmit)="updatePlayer(player.Id)" #playerForm="ngForm">
         <div class="modal-header">
           <h4 class="modal-title">Edit Player</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
           <div class="form-group">
@@ -32,10 +32,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+          <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cancel</button>
           <input type="submit" class="btn btn-success" [disabled]="!playerForm.form.valid" value="Update">
         </div>
       </form>
-    </div>
-  </div>
-</div>
